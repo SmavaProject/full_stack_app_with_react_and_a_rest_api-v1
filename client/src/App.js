@@ -6,27 +6,27 @@ import CourseDetail from "./components/CourseDetail";
 import UserSignUp from './components/UserSignUp';
 import UserSignIn from './components/UserSignIn';
 import withContext from './Context';
-
+import Header from "./components/Header";
+const HeaderWithContext = withContext(Header);
+const UserSignUpWithContext = withContext(UserSignUp);
+const UserSignInWithContext = withContext(UserSignIn);
 
 class App extends Component {
-
-
     render() {
-        const UserSignUpWithContext = withContext(UserSignUp);
-
-        console.log("rendering... ");
         return (
             < BrowserRouter >
-                < div className = "container" >< /div>
+                < div className="container">
+                    <HeaderWithContext/>
                     <Switch>
-                        <Route path="/signup" component={UserSignUpWithContext} />
+                        <Route path="/signup" component={UserSignUpWithContext}/>
+                        <Route path="/signin" component={UserSignInWithContext}/>
 
                         <Route path="/" component={Courses}/>
                         <Route path="/coursedetail/:id" component={CourseDetail}/>
                     </Switch>
+                    < /div>
             < /BrowserRouter>
-    )
-        ;
-    }
+    );
+}
 }
 export default App;

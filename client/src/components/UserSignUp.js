@@ -1,21 +1,24 @@
 import React, {Component} from "react";
 import Form from './Form';
 import { Link } from 'react-router-dom';
+
 class UserSignUp extends Component {
     state = {
-        name: '',
-        username: '',
+        firstName: '',
+        lastName: '',
         email: '',
         password: '',
+        confirmPassword: '',
         errors: [],
     }
 
     render() {
         const {
-            name,
-            username,
+            firstName,
+            lastName,
             email,
             password,
+            confirmPassword,
             errors,
         } = this.state;
 
@@ -31,19 +34,26 @@ class UserSignUp extends Component {
                         elements={() => (
                             <React.Fragment>
                                 <input
-                                    id="name"
-                                    name="name"
+                                    id="firstName"
+                                    name="firstName"
                                     type="text"
-                                    value={name}
+                                    value={firstName}
                                     onChange={this.change}
-                                    placeholder="Name" />
+                                    placeholder="First Name" />
                                 <input
-                                    id="username"
-                                    name="username"
+                                    id="lastName"
+                                    name="lastName"
                                     type="text"
-                                    value={username}
+                                    value={lastName}
                                     onChange={this.change}
-                                    placeholder="User Name" />
+                                    placeholder="Last Name" />
+                                <input
+                                    id="email"
+                                    name="email"
+                                    type="text"
+                                    value={email}
+                                    onChange={this.change}
+                                    placeholder="Email Address" />
                                 <input
                                     id="password"
                                     name="password"
@@ -51,6 +61,13 @@ class UserSignUp extends Component {
                                     value={password}
                                     onChange={this.change}
                                     placeholder="Password" />
+                                <input
+                                    id="confirmPassword"
+                                    name="confirmPassword"
+                                    type="confirmPassword"
+                                    value={confirmPassword}
+                                    onChange={this.change}
+                                    placeholder="Confirm Password" />
                             </React.Fragment>
                         )} />
                     <p>
@@ -73,39 +90,48 @@ class UserSignUp extends Component {
     }
 
     submit = () => {
-        const { context } = this.props;
+        const {context} = this.props;
         const {
-            name,
-            username,
+            firstName,
+            lastName,
+            email,
             password,
+            confirmPassword
         } = this.state;
 
         // Create user
         const user = {
-            name,
-            username,
-            password,
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password: password,
+            confirmPassword: confirmPassword
         };
 
-        context.data.createUser(user)
-            .then( errors => {
-                if (errors.length) {
-                    this.setState({ errors });
-                } else {
-                    console.log(`${username} is successfully signed up and authenticated!`);
-                    context.actions.signIn(username, password)
-                        .then(() => {
-                            this.props.history.push('/authenticated');
-                        });
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-                this.props.history.push('/error');
+        if (password !== confirmPassword) {
+            this.setState({
+                errors: ["Password and Confirm password dont match"]
             });
+        } else {
+            context.data.createUser(user)
+                .then(errors => {
+                    if (errors.length) {
+                        this.setState({errors});
+                    } else {
+                        console.log(`${lastName} is successfully signed up and authenticated!`);
+                        context.actions.signIn(lastName, password)
+                            .then(() => {
+                                this.props.history.push('/authenticated');
+                            });
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                    this.props.history.push('/error');
+                });
 
+        }
     }
-
     cancel = () => {
         this.props.history.push('/');
     }
