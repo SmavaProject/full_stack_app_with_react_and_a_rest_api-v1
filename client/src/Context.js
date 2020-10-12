@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+//import Cookies from 'js-cookie';
 import Data from './Data';
+
 const Context = React.createContext();
 
 export class Provider extends Component {
@@ -8,11 +10,9 @@ export class Provider extends Component {
         this.data = new Data();
     }
 
-    const value = {
-        data: this.data,
-    };
-
     render() {
+        const value = {
+        };
         return (
             <Context.Provider value={value}>
                 {this.props.children}
@@ -20,15 +20,23 @@ export class Provider extends Component {
         );
     }
 
-    export default function withContext(Component) {
-        return function ContextComponent(props) {
-            return (
-                <Context.Consumer>
-                    {context => <Component {...props} context={context} />}
-                </Context.Consumer>
-            );
-        }
-    }
-
-
 }
+
+export const Consumer = Context.Consumer;
+
+/**
+ * A higher-order component that wraps the provided component in a Context Consumer component.
+ * @param {class} Component - A React component.
+ * @returns {function} A higher-order component.
+ */
+
+export default function withContext(Component) {
+    return function ContextComponent(props) {
+        return (
+            <Context.Consumer>
+                {context => <Component {...props} context={context} />}
+            </Context.Consumer>
+        );
+    }
+}
+
