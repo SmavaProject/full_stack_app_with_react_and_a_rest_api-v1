@@ -24,8 +24,8 @@ class App extends Component {
                         <Route path="/" component={Courses}/>
                         <Route path="/coursedetail/:id" component={CourseDetail}/>
                     </Switch>
-                    < /div>
-            < /BrowserRouter>
+                    </div>
+            </BrowserRouter>
     );
 }
 }
