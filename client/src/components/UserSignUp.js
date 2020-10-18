@@ -121,11 +121,10 @@ class UserSignUp extends Component {
                         console.log(`${lastName} is successfully signed up and authenticated!`);
                         context.actions.signIn(lastName, password)
                             .then(() => {
-                                this.props.history.push('/authenticated');
+                                this.props.history.push('/courses');
                             });
                     }
-                })
-                .catch((err) => {
+                }).catch((err) => {
                     console.log(err);
                     this.props.history.push('/error');
                 });

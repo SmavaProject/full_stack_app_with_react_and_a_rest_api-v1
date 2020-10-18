@@ -1,6 +1,6 @@
+import './global.css';
 import React, {Component} from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import './App.css';
 import Courses from "./components/Courses";
 import CourseDetail from "./components/CourseDetail";
 import UserSignUp from './components/UserSignUp';
