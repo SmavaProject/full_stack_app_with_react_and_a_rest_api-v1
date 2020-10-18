@@ -34,10 +34,15 @@ export class Provider extends Component {
     signIn = async (username, password) => {
         const user = await this.data.getUser(username, password);
         if (user !== null){
+            console.log(`SUCCESS! ${username} is now signed in!`);
             this.setState(()=> {
                 return {
                     authenticatedUser: user,
                 };
+            });
+        }else{
+            this.setState(() => {
+                return { errors: [ 'Sign-in was unsuccessful' ] };
             });
         }
         return user;
