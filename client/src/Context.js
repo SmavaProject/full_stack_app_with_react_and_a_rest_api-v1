@@ -48,6 +48,16 @@ export class Provider extends Component {
         return user;
     }
 
+    signOut = () => {
+        this.setState(() => {
+            return {
+                authenticatedUser: null,
+            };
+        });
+    }
+
+
+
 
 }
 

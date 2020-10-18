@@ -2,6 +2,8 @@ import config from './config';
 
 export default class Data {
     api(path, method = 'GET', body = null, requiresAuth = false, credentials = null) {
+
+        //comes from apiBaseUrl property of config.js
         const url = config.apiBaseUrl + path;
 
         const options = {

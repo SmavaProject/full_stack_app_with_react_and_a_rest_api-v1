@@ -6,7 +6,7 @@ class UserSignUp extends Component {
     state = {
         firstName: '',
         lastName: '',
-        email: '',
+        emailAddress: '',
         password: '',
         confirmPassword: '',
         errors: [],
@@ -16,7 +16,7 @@ class UserSignUp extends Component {
         const {
             firstName,
             lastName,
-            email,
+            emailAddress,
             password,
             confirmPassword,
             errors,
@@ -48,10 +48,10 @@ class UserSignUp extends Component {
                                     onChange={this.change}
                                     placeholder="Last Name" />
                                 <input
-                                    id="email"
-                                    name="email"
+                                    id="emailAddress"
+                                    name="emailAddress"
                                     type="text"
-                                    value={email}
+                                    value={emailAddress}
                                     onChange={this.change}
                                     placeholder="Email Address" />
                                 <input
@@ -94,7 +94,7 @@ class UserSignUp extends Component {
         const {
             firstName,
             lastName,
-            email,
+            emailAddress,
             password,
             confirmPassword
         } = this.state;
@@ -103,7 +103,7 @@ class UserSignUp extends Component {
         const user = {
             firstName: firstName,
             lastName: lastName,
-            email: email,
+            emailAddress: emailAddress,
             password: password,
             confirmPassword: confirmPassword
         };
@@ -113,6 +113,7 @@ class UserSignUp extends Component {
                 errors: ["Password and Confirm password dont match"]
             });
         } else {
+            console.log("crearing a user: " + user.email);
             context.data.createUser(user)
                 .then(errors => {
                     if (errors.length) {
