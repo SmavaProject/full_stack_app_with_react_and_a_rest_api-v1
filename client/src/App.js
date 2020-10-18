@@ -6,6 +6,7 @@ import CourseDetail from "./components/CourseDetail";
 import UserSignUp from './components/UserSignUp';
 import UserSignIn from './components/UserSignIn';
 import withContext from './Context';
+import PrivateRoute from './PrivateRoute';
 import Header from "./components/Header";
 const HeaderWithContext = withContext(Header);
 const UserSignUpWithContext = withContext(UserSignUp);
