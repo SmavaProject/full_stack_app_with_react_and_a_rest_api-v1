@@ -8,9 +8,13 @@ import UserSignIn from './components/UserSignIn';
 import withContext from './Context';
 import PrivateRoute from './PrivateRoute';
 import Header from "./components/Header";
+import CreateCourse from './components/CreateCourse';
+import UpdateCourse from './components/UpdateCourse';
 const HeaderWithContext = withContext(Header);
 const UserSignUpWithContext = withContext(UserSignUp);
 const UserSignInWithContext = withContext(UserSignIn);
+const CreateCourseWithContext = withContext(CreateCourse);
+const UpdateCourseWithContext = withContext(UpdateCourse);
 
 class App extends Component {
     render() {
@@ -23,6 +27,8 @@ class App extends Component {
                         <Route path="/signin" component={UserSignInWithContext}/>
 
                         <Route path="/" component={Courses}/>
+                        <PrivateRoute path="/courses/create" component={CreateCourseWithContext}/>
+                        <PrivateRoute path="/courses/:id/update" component={UpdateCourseWithContext}/>
                         <Route path="/coursedetail/:id" component={CourseDetail}/>
                     </Switch>
                     </div>
