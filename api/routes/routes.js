@@ -21,7 +21,7 @@ function asyncHandler(cb){
 
 const authenticateUser = async (req, res, next) => {
     let message = null;
-
+debugger;
     //get credentials from Authorization header
     const credentials = auth(req);
 

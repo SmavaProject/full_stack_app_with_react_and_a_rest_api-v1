@@ -8,23 +8,38 @@ class Courses extends Component {
         errors: []
     }
 
+    componentDidMount() {
+        debugger;
+        const { context } = this.props;
+        console.log("context " + context);
+
+        context.data.getCourses().then((courses) => {
+            if (courses) {
+                this.setState({ courses });
+            }
+        }).catch( (error) => {
+                this.props.history.push("/error");
+            });
+    }
+
     render() {
-
-        const {context} = this.props;
-        let userCourses;
-
-        if (this.context.courses != null){
-            userCourses = this.context.courses.courses.map( course =>
-            <li key={course.id}>
-                <Link to={`/coursedetail/${course.id}`} className="links"> course.title </Link>
-            </li>
-            )
-        }
+        const courses = this.state.courses.map( (course) => (
+            <div className="grid-33" key={course.id}>
+                <Link className="course--module course--link" id={course.id} to={`/courses/${course.id}`}>
+                    <h4 className="course-label">Course</h4>
+                    <h3 className="course-title">{course.title}</h3>
+                </Link>
+            </div>
+        ));
 
         return (
-            <div>
-                <h1> Courses </h1>
-                <ul>{userCourses}</ul>
+            <div className="bounds">
+                {courses}
+                <div className="grid-33">
+                    <Link className="course--module course--add--module" to="/courses/create">
+                        <h3 className="course--add--title">+ New Course</h3>
+                    </Link>
+                </div>
             </div>
         );
     }

@@ -12,6 +12,7 @@ import Header from "./components/Header";
 import CreateCourse from './components/CreateCourse';
 import UpdateCourse from './components/UpdateCourse';
 const HeaderWithContext = withContext(Header);
+const CoursesWithCOntext = withContext(Courses);
 const UserSignUpWithContext = withContext(UserSignUp);
 const UserSignInWithContext = withContext(UserSignIn);
 const UserSignOutWithContext = withContext(UserSignOut);
@@ -25,10 +26,10 @@ class App extends Component {
                 < div className="container">
                     <HeaderWithContext/>
                     <Switch>
+                        <Route path="/" component={CoursesWithCOntext}/>
                         <Route path="/signup" component={UserSignUpWithContext}/>
                         <Route path="/signin" component={UserSignInWithContext}/>
                         <Route path="/signout" component={UserSignOutWithContext}/>
-                        <Route path="/" component={Courses}/>
                         <PrivateRoute path="/courses/create" component={CreateCourseWithContext}/>
                         <PrivateRoute path="/courses/:id/update" component={UpdateCourseWithContext}/>
                         <Route path="/coursedetail/:id" component={CourseDetail}/>
