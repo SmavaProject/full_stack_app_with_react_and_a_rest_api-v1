@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 class UserSignIn extends Component{
 
     state = {
-        email: '',
+        emailAddress: '',
         password: '',
         errors: []
     }
 
     render() {
         const {
-            email,
+            emailAddress,
             password,
             errors
         } = this.state;
@@ -29,10 +29,10 @@ class UserSignIn extends Component{
                         elements={() => (
                             <React.Fragment>
                                 <input
-                                    id="email"
-                                    name="email"
+                                    id="emailAddress"
+                                    name="emailAddress"
                                     type="text"
-                                    value={email}
+                                    value={emailAddress}
                                     onChange={this.change}
                                     placeholder="Email Address" />
                                 <input
@@ -51,16 +51,16 @@ class UserSignIn extends Component{
     }
     submit = () => {
         const { context } = this.props;
-        const { username, password } = this.state;
+        const { emailAddress, password } = this.state;
         //call signIn function every time uppon clicking on submit
-        context.actions.signIn(username, password).then( user => {
+        context.actions.signIn(emailAddress, password).then( user => {
             if (user == null){
                 this.setState( () => {
                     return {errors: ['User was not found. SignIn is not successfull']};
                 });
             }else{
                 this.props.history.push('/authenticated');
-                console.log(`SUCCESS! ${username} is now signed in!`);
+                console.log(`SUCCESS! ${emailAddress} is now signed in!`);
 
             }
         }).catch( error => {

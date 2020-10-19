@@ -21,7 +21,8 @@ export class Provider extends Component {
             authenticatedUser,
             data: this.data,
             actions: {
-                signIn: this.signIn
+                signIn: this.signIn,
+                signOut: this.signOut
             }
         };
         return (
@@ -31,10 +32,11 @@ export class Provider extends Component {
         );
     }
 
-    signIn = async (username, password) => {
-        const user = await this.data.getUser(username, password);
+    signIn = async (emailAddress, password) => {
+        debugger;
+        const user = await this.data.getUser(emailAddress, password);
         if (user !== null){
-            console.log(`SUCCESS! ${username} is now signed in!`);
+            console.log(`SUCCESS! ${emailAddress} is now signed in!`);
             this.setState(()=> {
                 return {
                     authenticatedUser: user,
