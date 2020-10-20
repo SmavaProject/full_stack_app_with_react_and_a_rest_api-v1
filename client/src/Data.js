@@ -83,7 +83,16 @@ export default class Data {
     }
 
     async deleteCourse(id){
-
+        const response = await this.api(`/courses/${id}`, "DELETE",null, true, { emailAddress, password });
+        if (response.status === 200) {
+            return [];
+        } else if (response.status === 401) {
+            return response.json().then(data => {
+                return data.errors;
+            });
+        } else {
+            throw new Error();
+        }
     }
 
     async updateCourse(id){
