@@ -68,4 +68,25 @@ export default class Data {
         }
     }
 
+    async detCourseDetails(id){
+        const response = await this.api(`/courses/${id}`, "GET");
+        if (response.status === 200) {
+            const course = await response.json().then((data) => data);
+            return course;
+        } else if (response.status === 401) {
+            return response.json().then(data => {
+                return data.errors;
+            });
+        } else {
+            throw new Error();
+        }
+    }
+
+    async deleteCourse(id){
+
+    }
+
+    async updateCourse(id){
+
+    }
 }
