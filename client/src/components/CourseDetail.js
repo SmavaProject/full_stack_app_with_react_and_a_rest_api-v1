@@ -26,7 +26,9 @@ class CourseDetail extends Component {
 
     render() {
         return (
-            <div></div>
+            <div>
+                <h2>His is course details page</h2>
+            </div>
         );
     }
 
