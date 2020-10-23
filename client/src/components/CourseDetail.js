@@ -2,11 +2,9 @@ import React, {Component} from 'react';
 import { NavLink } from 'react-router-dom';
 import {Link} from "react-router-dom";
 
-
 class CourseDetail extends Component {
     state = {
         courseDetail: {},
-        materialsNeeded:[],
         user: {}
     }
 
@@ -19,15 +17,13 @@ class CourseDetail extends Component {
                 this.setState({
                     courseDetail: response.course,
                     user: response.course.owner,
-                })
-                debugger;
+                });
             }else{
                 this.props.history.push("/error");
             }
         })).catch(error => {
             console.log(error);
         });
-
     }
 
     render() {
@@ -42,11 +38,12 @@ class CourseDetail extends Component {
         const {authenticatedUser} = context;
 
         const courseID = this.props.match.params.id;
-        const parsedId = parseInt(courseID);
-
-
-
+        debugger;
+        console.log("user " + user)
+        console.log("courseDetail " + courseDetail)
         return (
+
+
             <div className="action--bar">
                 <div className="bounds">
                     <div className="grid-100">

@@ -2,7 +2,6 @@ import config from './config';
 
 export default class Data {
     api(path, method = 'GET', body = null, requiresAuth = false, credentials = null) {
-        debugger;
         //comes from apiBaseUrl property of config.js
         const url = config.apiBaseUrl + path;
 
@@ -26,7 +25,6 @@ export default class Data {
 
     async getUser(emailAddress, password) {
         console.log("signing in... " + emailAddress + ", " + password);
-        debugger;
         const response = await this.api(`/users`, 'GET', null, true, { emailAddress, password });
         if (response.status === 200) {
             return response.json().then(data => data);
@@ -73,7 +71,6 @@ export default class Data {
         if (response.status === 200) {
             const course = await response.json().then((data) => data);
             console.log(course);
-            debugger;
             return course;
         } else if (response.status === 401) {
             return response.json().then(data => {
