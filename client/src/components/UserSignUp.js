@@ -114,7 +114,6 @@ class UserSignUp extends Component {
             });
         } else {
             console.log("Creating a user: " + user.emailAddress);
-            debugger;
             context.data.createUser(user)
                 .then(errors => {
                     if (errors.length) {

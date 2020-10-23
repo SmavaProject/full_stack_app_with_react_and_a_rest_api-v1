@@ -59,7 +59,7 @@ class UserSignIn extends Component{
                     return {errors: ['User was not found. SignIn is not successfull']};
                 });
             }else{
-                this.props.history.push('/authenticated');
+                this.props.history.push('/');
                 console.log(`SUCCESS! ${emailAddress} is now signed in!`);
 
             }

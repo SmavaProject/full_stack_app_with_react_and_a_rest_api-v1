@@ -9,7 +9,6 @@ class Courses extends Component {
     }
 
     componentDidMount() {
-        debugger;
         const { context } = this.props;
         console.log("context " + context);
 
@@ -31,7 +30,6 @@ class Courses extends Component {
                 </Link>
             </div>
         ));
-        debugger;
         console.log("courses : " + courses.length);
         return (
             <div className="bounds">
