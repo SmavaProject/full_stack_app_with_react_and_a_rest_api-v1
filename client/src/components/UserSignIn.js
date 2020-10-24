@@ -67,6 +67,8 @@ class UserSignIn extends Component{
             console.log(error);
             this.props.history.push('/error');
         });
+        debugger;
+        console.log("signIn" + emailAddress + password);
     }
 
     cancel = () => {
