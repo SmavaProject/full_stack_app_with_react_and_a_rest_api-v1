@@ -23,7 +23,8 @@ export default class CreateCourse extends Component {
             userID: context.authenticatedUser.id,
             firstName : context.authenticatedUser.firstName,
             lastName: context.authenticatedUser.lastName,
-            emailAddress: context.authenticatedUser.emailAddress
+            emailAddress: context.authenticatedUser.emailAddress,
+            password: context.authenticatedUser.password
         })
 
     }
@@ -32,10 +33,45 @@ export default class CreateCourse extends Component {
         this.props.history.push('/')
     }
     submit = () => {
+        const {context} = this.props;
+        const {
+            userID,
+            firstName,
+            lastName,
+            emailAddress,
+            password,
+            title,
+            description,
+            estimatedTime,
+            materialsNeeded,
+            errors
+        } = this.state;
+
+        const createdCourse = {userID, title, description, estimatedTime, materialsNeeded};
+        debugger;
+        console.log("create course - submit - " + userID, firstName, lastName, emailAddress, password, createdCourse);
+        context.data.createCourse(createdCourse, emailAddress, password).then( errors => {
+            if (errors.length > 0){
+                this.setState({errors: errors})
+            }else{
+                this.props.history.push('/');
+            }
+        }).catch(error => {
+            console.log(error);
+        })
+
 
     }
-    onChange = () => {
+    onChange = (event) => {
+        const fieldName = event.target.name;
+        const fieldValue = event.target.value;
+        this.setState({
+            [fieldName] : fieldValue
+        })
+    }
 
+    getErrors = () => {
+        this.state.errors.map( (item,index) => <li key={index}>{item}</li> );
     }
     render() {
 
@@ -47,23 +83,22 @@ export default class CreateCourse extends Component {
             errors
         } = this.state;
 
-        console.log("create course " + userID, firstName, lastName, emailAddress)
-
+        console.log("create course " + userID, firstName, lastName, emailAddress, this.getErrors);
         return(
             <div>
                 <div className="bounds course--detail">
                     <h1>Create Course</h1>
                     <div>
-
+                        <span> {errors.length > 0  ? (
                         <div>
-                            <h2 className="validation--errors--label">Validation errors</h2>
+                            <h2 className="validation--errors--label" >Validation errors</h2>
                             <div className="validation-errors">
                                 <ul>
-                                    <li>Please provide a value for "Title"</li>
-                                    <li>Please provide a value for "Description"</li>
+                                    {this.getErrors}
                                 </ul>
                             </div>
                         </div>
+                            ): null} </span>
                         <Form cancel={this.cancel} submit={this.submit} submitButtonText="Create Course" errors={errors}
                               elements={() => (
                                   <React.Fragment>
