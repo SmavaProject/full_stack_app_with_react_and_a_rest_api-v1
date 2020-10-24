@@ -8,7 +8,8 @@ class CourseDetail extends Component {
         courseDetail: {
             user: {},
             materialsNeeded: {}
-        }
+        },
+        errors: []
     }
 
     componentDidMount() {
@@ -35,6 +36,25 @@ class CourseDetail extends Component {
         return authenticatedUser.emailAddress === user.emailAddress
     }
 
+    deleteCourse = () => {
+        const {context} = this.props;
+        const {
+            courseDetail,
+        } = this.state;
+
+        const user = courseDetail.user;
+        debugger;
+        context.data.deleteCourse(courseDetail.id, user.emailAddress, user.password).then( errors => {
+            if (errors.length > 0){
+                this.setState({errors: errors})
+            }else{
+                this.props.history.push('/');
+            }
+        }).catch(error => {
+            console.log(error);
+        });
+    }
+
     render() {
 
         const {
@@ -51,7 +71,8 @@ class CourseDetail extends Component {
         console.log("authenticatedUser.emailAddress " + authenticatedUser.emailAddress)
         console.log("user.emailAddress " + user.emailAddress)
 
-        const courseID = this.props.match.params.id;
+        //const courseID = this.props.match.params.id;
+        const courseID = courseDetail.id;
         debugger;
         console.log("user " + user)
         console.log("courseDetail " + courseDetail)
@@ -67,7 +88,7 @@ class CourseDetail extends Component {
                         <span>{this.userIsAuthenticated(authenticatedUser, user) ? (
                                 <React.Fragment>
                                     <Link className="button" to={`/courses/${courseID}/update`}>Update Course</Link>
-                                    <Link className="button" to={`/courses/${courseID}/delete`}>Delete Course</Link>
+                                    <button className="button" onClick={this.deleteCourse}>Delete Course</button>
                                 </React.Fragment>
                             ) : <hr/>}
                         </span>
