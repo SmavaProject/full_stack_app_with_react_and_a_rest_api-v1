@@ -28,12 +28,13 @@ class App extends Component {
                     <HeaderWithContext/>
                     <Switch>
                         <PrivateRoute path="/courses/create" component={CreateCourseWithContext}/>
-                        <PrivateRoute path="/courses/:id" component={CourseDetailsWithContext}/>
                         <PrivateRoute path="/courses/:id/update" component={UpdateCourseWithContext}/>
+                        <PrivateRoute path="/courses/:id" component={CourseDetailsWithContext}/>
                         <Route path="/signup" component={UserSignUpWithContext}/>
                         <Route path="/signin" component={UserSignInWithContext}/>
                         <Route path="/signout" component={UserSignOutWithContext}/>
                         <Route exact path="/" component={CoursesWithCOntext}/>
+                        <Route exact path="/courses" component={CoursesWithCOntext}/>
                     </Switch>
                     </div>
             </BrowserRouter>

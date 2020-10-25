@@ -14,7 +14,6 @@ export default class CreateCourse extends Component {
         estimatedTime:"",
         materialsNeeded:"",
         errors:[]
-
     }
 
     componentDidMount() {
@@ -26,7 +25,6 @@ export default class CreateCourse extends Component {
             emailAddress: context.authenticatedUser.emailAddress,
             password: context.authenticatedUser.password
         })
-
     }
 
     cancel = () => {

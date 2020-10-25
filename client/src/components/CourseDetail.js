@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 
 class CourseDetail extends Component {
@@ -72,8 +72,8 @@ class CourseDetail extends Component {
         console.log("authenticatedUser.emailAddress " + authenticatedUser.emailAddress)
         console.log("user.emailAddress " + user.emailAddress)
 
-        //const courseID = this.props.match.params.id;
-        const courseID = courseDetail.id;
+        const courseID = this.props.match.params.id; //string
+        //const courseID = courseDetail.id; //number
         debugger;
         console.log("user " + user)
         console.log("courseDetail " + courseDetail)
@@ -88,12 +88,12 @@ class CourseDetail extends Component {
 
                         <span>{this.userIsAuthenticated(authenticatedUser, user) ? (
                                 <React.Fragment>
-                                    <Link className="button" to={`/courses/${courseID}/update`}>Update Course</Link>
+                                    <NavLink className="button" to={`/courses/${courseID}/update`}>Update Course</NavLink>
                                     <button className="button" onClick={this.deleteCourse}>Delete Course</button>
                                 </React.Fragment>
                             ) : <hr/>}
                         </span>
-                            <Link className="button button-secondary" to="./">Return to List</Link>
+                            <Link className="button button-secondary" to="/">Return to List</Link>
 
                         </div>
                     </div>
