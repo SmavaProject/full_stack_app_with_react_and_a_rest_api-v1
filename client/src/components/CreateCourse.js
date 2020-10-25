@@ -68,6 +68,12 @@ export default class CreateCourse extends Component {
         })
     }
 
+
+    //DEBUG HERE!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!
     getErrors = () => {
         this.state.errors.map( (item,index) => <li key={index}>{item}</li> );
     }
@@ -82,6 +88,11 @@ export default class CreateCourse extends Component {
         } = this.state;
 
         console.log("create course " + userId, firstName, lastName, emailAddress, this.getErrors);
+
+        const err = this.state.errors.map( (item,index) => `<li key={index}>{item}</li>`);
+        console.log("this.state.errors " + this.state.errors);
+        debugger;
+        console.log("err " + err);
         return(
             <div>
                 <div className="bounds course--detail">
@@ -92,7 +103,7 @@ export default class CreateCourse extends Component {
                             <h2 className="validation--errors--label" >Validation errors</h2>
                             <div className="validation-errors">
                                 <ul>
-                                    {this.getErrors}
+                                    {err}
                                 </ul>
                             </div>
                         </div>

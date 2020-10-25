@@ -43,6 +43,7 @@ export default class Data {
             return [];
         }
         else if (response.status === 400) {
+            console.log("response createUser " + response.json.length);
             return response.json().then(data => {
                 return data.errors;
             });
@@ -100,6 +101,7 @@ export default class Data {
             return [];
         }
         else if (response.status === 400) {
+            console.log("response updateCourse " + response.json.length);
             return response.json().then(data => {
                 return data.errors;
             });
@@ -116,6 +118,7 @@ export default class Data {
             return [];
         }
         else if (response.status === 400) {
+            console.log("response createCourse " + response.json.length);
             return response.json().then(data => {
                 return data.errors;
             });
