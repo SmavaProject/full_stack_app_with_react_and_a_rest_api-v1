@@ -4,7 +4,7 @@ import Form from "./Form";
 export default class CreateCourse extends Component {
 
     state = {
-        userID:"",
+        userId:"",
         firstName:"",
         lastName:"",
         emailAddress:"",
@@ -20,7 +20,7 @@ export default class CreateCourse extends Component {
     componentDidMount() {
         const { context } = this.props;
         this.setState({
-            userID: context.authenticatedUser.id,
+            userId: context.authenticatedUser.id,
             firstName : context.authenticatedUser.firstName,
             lastName: context.authenticatedUser.lastName,
             emailAddress: context.authenticatedUser.emailAddress,
@@ -35,7 +35,7 @@ export default class CreateCourse extends Component {
     submit = () => {
         const {context} = this.props;
         const {
-            userID,
+            userId,
             firstName,
             lastName,
             emailAddress,
@@ -47,9 +47,9 @@ export default class CreateCourse extends Component {
             errors
         } = this.state;
 
-        const createdCourse = {userID, title, description, estimatedTime, materialsNeeded};
+        const createdCourse = {userId, title, description, estimatedTime, materialsNeeded};
         debugger;
-        console.log("create course - submit - " + userID, firstName, lastName, emailAddress, password, createdCourse);
+        console.log("create course - submit - " + userId, firstName, lastName, emailAddress, password, createdCourse);
         context.data.createCourse(createdCourse, emailAddress, password).then( errors => {
             if (errors.length > 0){
                 this.setState({errors: errors})
@@ -76,14 +76,14 @@ export default class CreateCourse extends Component {
     render() {
 
         const {
-            userID,
+            userId,
             firstName,
             lastName,
             emailAddress,
             errors
         } = this.state;
 
-        console.log("create course " + userID, firstName, lastName, emailAddress, this.getErrors);
+        console.log("create course " + userId, firstName, lastName, emailAddress, this.getErrors);
         return(
             <div>
                 <div className="bounds course--detail">

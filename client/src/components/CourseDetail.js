@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { NavLink } from 'react-router-dom';
 import {Link} from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 
@@ -43,15 +42,17 @@ class CourseDetail extends Component {
         } = this.state;
 
         const user = courseDetail.user;
+        //need to get the password from the context.authenticatedUser, because API returns courseDetail.user without the password
+        const password = context.authenticatedUser.password;
         debugger;
-        context.data.deleteCourse(courseDetail.id, user.emailAddress, user.password).then( errors => {
+        context.data.deleteCourse(courseDetail.id, user.emailAddress, password).then( errors => {
             if (errors.length > 0){
-                this.setState({errors: errors})
+                console.log(errors);
             }else{
                 this.props.history.push('/');
             }
-        }).catch(error => {
-            console.log(error);
+        }).catch(errors => {
+            console.log(errors);
         });
     }
 
