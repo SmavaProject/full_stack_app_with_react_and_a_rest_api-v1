@@ -207,13 +207,13 @@ POST /api/courses 201
 
 router.post('/courses', [
     check("title")
-        .exists()
+        .exists({ checkNull: true, checkFalsy: true })
         .withMessage("Please provide value from 'title'"),
     check("description")
-        .exists()
+        .exists({ checkNull: true, checkFalsy: true })
         .withMessage("Please provide value for 'description'"),
     check("userId")
-        .exists()
+        .exists({ checkNull: true, checkFalsy: true })
         .withMessage("Please provide value for 'userId'")
 ], authenticateUser, asyncHandler(async(req, res, next) => {
     try {

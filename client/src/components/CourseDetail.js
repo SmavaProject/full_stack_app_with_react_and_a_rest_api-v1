@@ -44,7 +44,6 @@ class CourseDetail extends Component {
         const user = courseDetail.user;
         //need to get the password from the context.authenticatedUser, because API returns courseDetail.user without the password
         const password = context.authenticatedUser.password;
-        debugger;
         context.data.deleteCourse(courseDetail.id, user.emailAddress, password).then( errors => {
             if (errors.length > 0){
                 console.log(errors);
@@ -74,7 +73,6 @@ class CourseDetail extends Component {
 
         const courseID = this.props.match.params.id; //string
         //const courseID = courseDetail.id; //number
-        debugger;
         console.log("user " + user)
         console.log("courseDetail " + courseDetail)
 

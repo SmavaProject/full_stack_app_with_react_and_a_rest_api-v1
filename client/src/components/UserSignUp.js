@@ -113,7 +113,6 @@ class UserSignUp extends Component {
                 errors: ["Password and Confirm password dont match"]
             });
         } else {
-            console.log("Creating a user: " + user.emailAddress);
             context.data.createUser(user)
                 .then(errors => {
                     if (errors.length) {

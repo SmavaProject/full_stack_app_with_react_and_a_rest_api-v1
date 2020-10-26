@@ -41,12 +41,10 @@ export default class CreateCourse extends Component {
             title,
             description,
             estimatedTime,
-            materialsNeeded,
-            errors
+            materialsNeeded
         } = this.state;
 
         const createdCourse = {userId, title, description, estimatedTime, materialsNeeded};
-        debugger;
         console.log("create course - submit - " + userId, firstName, lastName, emailAddress, password, createdCourse);
         context.data.createCourse(createdCourse, emailAddress, password).then( errors => {
             if (errors.length > 0){
@@ -68,46 +66,20 @@ export default class CreateCourse extends Component {
         })
     }
 
-
-    //DEBUG HERE!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!
-    getErrors = () => {
-        this.state.errors.map( (item,index) => <li key={index}>{item}</li> );
-    }
     render() {
 
         const {
-            userId,
             firstName,
             lastName,
-            emailAddress,
             errors
         } = this.state;
 
-        console.log("create course " + userId, firstName, lastName, emailAddress, this.getErrors);
-
-        const err = this.state.errors.map( (item,index) => `<li key={index}>{item}</li>`);
-        console.log("this.state.errors " + this.state.errors);
-        debugger;
-        console.log("err " + err);
         return(
             <div>
                 <div className="bounds course--detail">
                     <h1>Create Course</h1>
                     <div>
-                        <span> {errors.length > 0  ? (
-                        <div>
-                            <h2 className="validation--errors--label" >Validation errors</h2>
-                            <div className="validation-errors">
-                                <ul>
-                                    {err}
-                                </ul>
-                            </div>
-                        </div>
-                            ): null} </span>
+
                         <Form cancel={this.cancel} submit={this.submit} submitButtonText="Create Course" errors={errors}
                               elements={() => (
                                   <React.Fragment>

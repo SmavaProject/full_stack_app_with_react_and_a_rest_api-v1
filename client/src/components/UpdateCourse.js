@@ -51,15 +51,12 @@ export default class UpdateCourse extends Component {
         const {id} = this.props.match.params;
         const {
             userId,
-            firstName,
-            lastName,
             emailAddress,
             password,
             title,
             description,
             estimatedTime,
-            materialsNeeded,
-            errors
+            materialsNeeded
         } = this.state;
 
         const updatedCourse = {userId, title, description, estimatedTime, materialsNeeded};
@@ -91,11 +88,8 @@ export default class UpdateCourse extends Component {
 
 
         const {
-            userId,
             firstName,
             lastName,
-            emailAddress,
-            password,
             title,
             description,
             estimatedTime,

@@ -15,7 +15,6 @@ export default class Data {
         if (body !== null) {
             options.body = JSON.stringify(body);
         }
-        debugger;
         if (requiresAuth) {
             const encodedCredentials = btoa(`${credentials.emailAddress}:${credentials.password}`);
             options.headers['Authorization'] = `Basic ${encodedCredentials}`;
@@ -101,7 +100,6 @@ export default class Data {
             return [];
         }
         else if (response.status === 400) {
-            console.log("response updateCourse " + response.json.length);
             return response.json().then(data => {
                 return data.errors;
             });
@@ -113,12 +111,10 @@ export default class Data {
 
     async createCourse(course, emailAddress, password){
         const response = await this.api('/courses', 'POST', course, true,{ emailAddress, password });
-        debugger;
         if (response.status === 201) {
             return [];
         }
         else if (response.status === 400) {
-            console.log("response createCourse " + response.json.length);
             return response.json().then(data => {
                 return data.errors;
             });
