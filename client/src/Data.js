@@ -22,6 +22,9 @@ export default class Data {
         return fetch(url, options);
     }
 
+    /*
+    makes GET users call to the backend
+     */
     async getUser(emailAddress, password) {
         console.log("signing in... " + emailAddress + ", " + password);
         const response = await this.api(`/users`, 'GET', null, true, { emailAddress, password });
@@ -36,6 +39,9 @@ export default class Data {
         }
     }
 
+    /*
+    makes POST call to the backend to create a new user
+     */
     async createUser(user) {
         const response = await this.api('/users', 'POST', user);
         if (response.status === 201) {
@@ -52,6 +58,9 @@ export default class Data {
         }
     }
 
+    /*
+    makes GET courses call to the backend
+    */
     async getCourses() {
         const response = await this.api("/courses", "GET");
         if (response.status === 200) {
@@ -66,6 +75,9 @@ export default class Data {
         }
     }
 
+    /*
+    makes GET call to the backend for retrieving a course with the specified ID
+    */
     async detCourseDetails(id){
         const response = await this.api(`/courses/${id}`, "GET");
         if (response.status === 200) {
@@ -81,6 +93,9 @@ export default class Data {
         }
     }
 
+    /*
+    makes DELETE call to the backend to delete a course with the specified ID
+     */
     async deleteCourse(id, emailAddress, password){
         const response = await this.api(`/courses/${id}`, "DELETE",null, true, { emailAddress, password });
         if (response.status === 204) {
@@ -94,6 +109,9 @@ export default class Data {
         }
     }
 
+    /*
+    makes PUT call to the backend for updating a course with the specified ID
+    */
     async updateCourse(courseId, updatedCourse, emailAddress, password){
         const response = await this.api(`/courses/${courseId}`, 'PUT', updatedCourse, true,{ emailAddress, password });
         if (response.status === 204) {
@@ -109,6 +127,9 @@ export default class Data {
         }
     }
 
+    /*
+    makes POST call to the backend to create a new course
+    */
     async createCourse(course, emailAddress, password){
         const response = await this.api('/courses', 'POST', course, true,{ emailAddress, password });
         if (response.status === 201) {

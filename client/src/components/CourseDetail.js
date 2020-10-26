@@ -35,6 +35,9 @@ class CourseDetail extends Component {
         return authenticatedUser.emailAddress === user.emailAddress
     }
 
+    /*
+    handles delete course button click
+     */
     deleteCourse = () => {
         const {context} = this.props;
         const {
@@ -63,18 +66,11 @@ class CourseDetail extends Component {
 
         const user = courseDetail.user;
         const materialsNeeded = courseDetail.materialsNeeded;
-
-        console.log("materialsNeeded " + materialsNeeded)
         const {context} = this.props;
         const {authenticatedUser} = context;
 
-        console.log("authenticatedUser.emailAddress " + authenticatedUser.emailAddress)
-        console.log("user.emailAddress " + user.emailAddress)
-
         const courseID = this.props.match.params.id; //string
         //const courseID = courseDetail.id; //number
-        console.log("user " + user)
-        console.log("courseDetail " + courseDetail)
 
         return (
 
@@ -82,7 +78,6 @@ class CourseDetail extends Component {
                 <div className="action--bar">
                     <div className="bounds">
                         <div className="grid-100">
-
 
                         <span>{this.userIsAuthenticated(authenticatedUser, user) ? (
                                 <React.Fragment>
