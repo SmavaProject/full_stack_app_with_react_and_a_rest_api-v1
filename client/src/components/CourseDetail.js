@@ -101,10 +101,11 @@ class CourseDetail extends Component {
                             <h3 className="course--title"> {courseDetail.title} </h3>
                             <h3> Owner </h3>
                             <h3> By {user.firstName} {user.lastName} </h3>
+                        </div>
                             <div className="course--description">
                                 <p> {courseDetail.description} </p>
                             </div>
-
+                    </div>
                             <div className="grid-25 grid-right">
                                 <div className="course--stats">
                                     <ul className="course--stats--list">
@@ -124,8 +125,7 @@ class CourseDetail extends Component {
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+
         );
     }
 
