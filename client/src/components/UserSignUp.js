@@ -89,6 +89,9 @@ class UserSignUp extends Component {
         });
     }
 
+    /*
+    creates a new user and logs him/her in
+     */
     submit = () => {
         const {context} = this.props;
         const {
@@ -119,8 +122,8 @@ class UserSignUp extends Component {
                         this.setState({errors});
                     } else {
                         console.log(`${lastName} is successfully signed up and authenticated!`);
-                        context.actions.signIn(lastName, password)
-                            .then(() => {
+                        context.actions.signIn(emailAddress, password).then(() => {
+                            //debugger;
                                 this.props.history.push('/courses');
                             });
                     }

@@ -7,7 +7,9 @@ class Courses extends Component {
         courses: [],
         errors: []
     }
-
+    /*
+    loads list of courses on the home page
+     */
     componentDidMount() {
         const { context } = this.props;
         console.log("context " + context);
