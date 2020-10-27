@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
 import React, {Component} from "react";
 
+/*
+Header component which displays logged in user
+ */
 export default class Header extends Component {
     render() {
         const {context} = this.props;

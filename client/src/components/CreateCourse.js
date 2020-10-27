@@ -30,6 +30,10 @@ export default class CreateCourse extends Component {
     cancel = () => {
         this.props.history.push('/')
     }
+
+    /*
+    sends request to create a new course
+     */
     submit = () => {
         const {context} = this.props;
         const {

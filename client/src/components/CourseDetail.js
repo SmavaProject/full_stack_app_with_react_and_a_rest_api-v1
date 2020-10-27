@@ -80,11 +80,11 @@ class CourseDetail extends Component {
                         <div className="grid-100">
 
                         <span>{this.userIsAuthenticated(authenticatedUser, user) ? (
-                                <React.Fragment>
-                                    <NavLink className="button" to={`/courses/${courseID}/update`}>Update Course</NavLink>
-                                    <button className="button" onClick={this.deleteCourse}>Delete Course</button>
-                                </React.Fragment>
-                            ) : <hr/>}
+                            <React.Fragment>
+                                <NavLink className="button" to={`/courses/${courseID}/update`}>Update Course</NavLink>
+                                <button className="button" onClick={this.deleteCourse}>Delete Course</button>
+                            </React.Fragment>
+                        ) : <hr/>}
                         </span>
                             <Link className="button button-secondary" to="/">Return to List</Link>
 
@@ -99,32 +99,32 @@ class CourseDetail extends Component {
 
                             <h4 className="course--label"> Course </h4>
                             <h3 className="course--title"> {courseDetail.title} </h3>
-                            <h3> Owner </h3>
                             <h3> By {user.firstName} {user.lastName} </h3>
                         </div>
-                            <div className="course--description">
-                                <p> {courseDetail.description} </p>
-                            </div>
+                        <div className="course--description">
+                            <p> {courseDetail.description} </p>
+                        </div>
+
                     </div>
-                            <div className="grid-25 grid-right">
-                                <div className="course--stats">
-                                    <ul className="course--stats--list">
-                                        <li className="course--stats--list--item">
-                                            <h4>Estimated Time</h4>
-                                            <h3> {courseDetail.estimatedTime} </h3>
+                    <div className="grid-25 grid-right">
+                        <div className="course--stats">
+                            <ul className="course--stats--list">
+                                <li className="course--stats--list--item">
+                                    <h4>Estimated Time</h4>
+                                    <h3> {courseDetail.estimatedTime} </h3>
 
-                                        </li>
+                                </li>
 
-                                        <li className="course--stats--list--item">
-                                            <h4>Materials Needed</h4>
-                                            <ReactMarkdown>{materialsNeeded}</ReactMarkdown>
-                                        </li>
-                                    </ul>
+                                <li className="course--stats--list--item">
+                                    <h4>Materials Needed</h4>
+                                    <ReactMarkdown>{materialsNeeded}</ReactMarkdown>
+                                </li>
+                            </ul>
 
-                                </div>
-                            </div>
                         </div>
                     </div>
+                </div>
+            </div>
 
         );
     }

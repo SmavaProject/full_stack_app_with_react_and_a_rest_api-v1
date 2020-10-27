@@ -16,6 +16,9 @@ export default class UpdateCourse extends Component {
         errors:[]
     }
 
+    /*
+    loads existing data of the course upon loading the component
+     */
     componentDidMount() {
         const { context } = this.props;
         this.setState({
